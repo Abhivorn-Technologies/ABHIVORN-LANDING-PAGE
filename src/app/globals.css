@@ -1,0 +1,305 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Calm, light editorial palette: warm off-white page, near-black text, logo navy for actions */
+    --background: 40 20% 98%;
+    --foreground: 222 18% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 18% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 18% 11%;
+
+    /* Logo navy (#003A75) */
+    --primary: 210 100% 23%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Deep cyan — dark enough for white text and for text on white (WCAG AA) */
+    --secondary: 197 100% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Accent blue — 5.9:1 on white, so it is safe for links, small text and buttons */
+    --accent: 200 100% 31%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 40 14% 94.5%;
+    --muted-foreground: 222 7% 37%;
+
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 9% 88%;
+    --input: 40 6% 82%;
+    --ring: 200 100% 31%;
+
+    --radius: 0.5rem;
+
+    /* Custom Abhivorn tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(210, 100%, 23%) 0%, hsl(200, 100%, 31%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(205, 40%, 98%) 0%, hsl(205, 40%, 96%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(210, 100%, 23%) 0%, hsl(200, 100%, 31%) 100%);
+    --shadow-card: 0 1px 2px hsla(222, 18%, 11%, 0.04);
+    --shadow-card-hover: 0 1px 2px hsla(222, 18%, 11%, 0.06);
+    --shadow-button: none;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* VORQARD brand teal (text-safe shade) and its soft tint */
+    --vorqard: 175 84% 26%;
+    --vorqard-soft: 168 55% 95%;
+
+    /* Bright cyan from the logo — decorative only (fails contrast as text) */
+    --water: 197 83% 54%;
+  }
+
+  .dark {
+    --background: 207 50% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 207 50% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 207 50% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 195 100% 45%;
+    --primary-foreground: 207 100% 12%;
+
+    --secondary: 207 32% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 195 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 207 32% 17%;
+    --muted-foreground: 207 20% 65%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 207 32% 17%;
+    --input: 207 32% 17%;
+    --ring: 195 100% 50%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --water: 195 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-padding-top: 6rem;
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    overflow-x: clip;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-32;
+  }
+
+  /* Small uppercase label above section titles */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .btn-primary {
+    @apply bg-accent text-accent-foreground font-medium px-6 py-3 rounded-lg;
+    box-shadow: var(--shadow-button);
+    @apply transition-all duration-200 hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-primary text-primary font-medium px-6 py-3 rounded-lg;
+    @apply transition-all duration-200 hover:bg-primary hover:text-primary-foreground;
+  }
+
+  .link-underline {
+    @apply relative inline-block;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-accent origin-left scale-x-0 transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    animation: gradient 8s ease-in-out infinite;
+    background-size: 200% 200%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes gradient {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-flow {
+  animation: gradient-flow 8s ease-in-out infinite;
+  background-size: 100% 300%;
+}
+
+@keyframes gradient-flow {
+
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes wave-down {
+  0% {
+    background-position: 0% -100%;
+  }
+
+  100% {
+    background-position: 0% 200%;
+  }
+}
+
+@keyframes gentle-drift {
+
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes shutter-down {
+  0% {
+    background-position: 0% 200%;
+  }
+
+  100% {
+    background-position: 0% -100%;
+  }
+}
+
+.shutter-bg {
+  background-size: 100% 200%;
+  background-position: 0% 200%;
+  background-repeat: no-repeat;
+  transition: background-position 0.3s ease;
+}
+
+.group:hover .shutter-bg {
+  animation: shutter-down 2s linear infinite;
+}
+/* ---- Smooth jump to the quote form, only for visitors who don't prefer reduced motion ---- */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---- Respect users who prefer less motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
