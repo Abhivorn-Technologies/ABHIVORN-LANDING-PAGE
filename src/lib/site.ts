@@ -19,7 +19,7 @@ export const offices = ["Cyber Towers, HITEC City, Hyderabad", "KPHB Colony, Kuk
 
 /** Same figures as the main website's home and about pages. */
 export const stats = [
-  { value: "50+", label: "Projects delivered" },
+  { value: "100+", label: "Projects delivered" },
   { value: "15", label: "Member delivery team" },
   { value: "3", label: "Offices in Telangana" },
   { value: "2", label: "In-house products" },
